@@ -60,6 +60,64 @@ namespace Todean_Olaeriu.Migrations
                     b.ToTable("Orar");
                 });
 
+            modelBuilder.Entity("Todean_Olaeriu.Models.Pacient", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Localitate")
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<string>("Nume")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Prenume")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Telefon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Pacient");
+                });
+
+            modelBuilder.Entity("Todean_Olaeriu.Models.Programare", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime>("DataProgramare")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PacientID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ServiciuID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PacientID");
+
+                    b.HasIndex("ServiciuID");
+
+                    b.ToTable("Programare");
+                });
+
             modelBuilder.Entity("Todean_Olaeriu.Models.Serviciu", b =>
                 {
                     b.Property<int>("ID")
@@ -130,10 +188,25 @@ namespace Todean_Olaeriu.Migrations
                     b.ToTable("SpecialitateServiciu");
                 });
 
+            modelBuilder.Entity("Todean_Olaeriu.Models.Programare", b =>
+                {
+                    b.HasOne("Todean_Olaeriu.Models.Pacient", "Pacient")
+                        .WithMany("Programari")
+                        .HasForeignKey("PacientID");
+
+                    b.HasOne("Todean_Olaeriu.Models.Serviciu", "Serviciu")
+                        .WithMany()
+                        .HasForeignKey("ServiciuID");
+
+                    b.Navigation("Pacient");
+
+                    b.Navigation("Serviciu");
+                });
+
             modelBuilder.Entity("Todean_Olaeriu.Models.Serviciu", b =>
                 {
                     b.HasOne("Todean_Olaeriu.Models.Medic", "Medic")
-                        .WithMany()
+                        .WithMany("Servicii")
                         .HasForeignKey("MedicID");
 
                     b.HasOne("Todean_Olaeriu.Models.Orar", "Orar")
@@ -164,9 +237,19 @@ namespace Todean_Olaeriu.Migrations
                     b.Navigation("Specialitate");
                 });
 
+            modelBuilder.Entity("Todean_Olaeriu.Models.Medic", b =>
+                {
+                    b.Navigation("Servicii");
+                });
+
             modelBuilder.Entity("Todean_Olaeriu.Models.Orar", b =>
                 {
                     b.Navigation("Servicii");
+                });
+
+            modelBuilder.Entity("Todean_Olaeriu.Models.Pacient", b =>
+                {
+                    b.Navigation("Programari");
                 });
 
             modelBuilder.Entity("Todean_Olaeriu.Models.Serviciu", b =>

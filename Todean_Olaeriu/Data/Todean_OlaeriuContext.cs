@@ -21,5 +21,9 @@ namespace Todean_Olaeriu.Data
         public DbSet<Todean_Olaeriu.Models.Medic> Medic { get; set; }
 
         public DbSet<Todean_Olaeriu.Models.Specialitate> Specialitate { get; set; }
+
+        public DbSet<Todean_Olaeriu.Models.Pacient> Pacient { get; set; }
+
+        public DbSet<Todean_Olaeriu.Models.Programare> Programare { get; set; }
     }
 }

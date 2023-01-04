@@ -9,7 +9,7 @@ namespace Todean_Olaeriu.Models
     public class Serviciu
     {
         public int ID { get; set; }
-        [Display(Name ="Denumire Investigatie")]
+        [Display(Name ="Denumire Investigație")]
         public string Titlu { get; set; }
         public int? MedicID { get; set; }
         public Medic? Medic { get; set; }
