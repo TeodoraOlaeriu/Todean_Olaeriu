@@ -12,7 +12,7 @@ using Todean_Olaeriu.Data;
 namespace Todean_Olaeriu.Migrations
 {
     [DbContext(typeof(Todean_OlaeriuContext))]
-    [Migration("20230104112125_migrare1")]
+    [Migration("20230105191752_migrare1")]
     partial class migrare1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

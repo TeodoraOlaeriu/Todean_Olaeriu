@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Security.Policy;
-using System.Threading.Tasks;
+﻿using System.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Todean_Olaeriu.Data;
 using Todean_Olaeriu.Models;
 
 namespace Todean_Olaeriu.Pages.Servicii
@@ -57,7 +50,7 @@ namespace Todean_Olaeriu.Pages.Servicii
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync(int? id, string[] categoriiSelectate)
+        public async Task<IActionResult> OnPostAsync(int? id, string[] specialitatiSelectate)
         {
             if (id == null)
             {
@@ -76,15 +69,20 @@ namespace Todean_Olaeriu.Pages.Servicii
             serviciuToUpdate,
             "Serviciu",
             i => i.Titlu, i => i.Medic,
-            i => i.Pret, i => i.OrarID))
+            i => i.Pret, i => i.Orar))
             {
-                UpdateSpecialitatiServiciu(_context, categoriiSelectate, serviciuToUpdate);
+                UpdateSpecialitatiServiciu(_context, specialitatiSelectate, serviciuToUpdate);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
-            UpdateSpecialitatiServiciu(_context, categoriiSelectate, serviciuToUpdate);
+            UpdateSpecialitatiServiciu(_context, specialitatiSelectate, serviciuToUpdate);
             PopulareDateSpecialitateAtribuite(_context, serviciuToUpdate);
             return Page();
+
+        }
+        private bool ServiciuExists(int id)
+        {
+            return _context.Serviciu.Any(e => e.ID == id);
         }
     }
 }

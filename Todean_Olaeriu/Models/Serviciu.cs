@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Policy;
-using System.Xml.Linq;
 
 namespace Todean_Olaeriu.Models
 {
@@ -10,6 +8,8 @@ namespace Todean_Olaeriu.Models
     {
         public int ID { get; set; }
         [Display(Name ="Denumire Investigație")]
+        [Required]
+        [StringLength(150, MinimumLength = 3)]
         public string Titlu { get; set; }
         public int? MedicID { get; set; }
         public Medic? Medic { get; set; }

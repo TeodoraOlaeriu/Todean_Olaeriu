@@ -21,19 +21,19 @@ namespace Todean_Olaeriu.Models
                 });
             }
         }
-        public void UpdateSpecialitatiServiciu(Todean_OlaeriuContext context,string[] categoriiSelectate, Serviciu serviciuToUpdate)
+        public void UpdateSpecialitatiServiciu(Todean_OlaeriuContext context,string[] specialitatiSelectate, Serviciu serviciuToUpdate)
         {
-            if (categoriiSelectate == null)
+            if (specialitatiSelectate == null)
             {
                 serviciuToUpdate.SpecialitatiServiciu = new List<SpecialitateServiciu>();
                 return;
             }
-            var categoriiSelectateHS = new HashSet<string>(categoriiSelectate);
+            var specialitatiSelectateHS = new HashSet<string>(specialitatiSelectate);
             var specialitatiServiciu = new HashSet<int>
             (serviciuToUpdate.SpecialitatiServiciu.Select(c => c.Specialitate.ID));
             foreach (var sp in context.Specialitate)
             {
-                if (categoriiSelectateHS.Contains(sp.ID.ToString()))
+                if (specialitatiSelectateHS.Contains(sp.ID.ToString()))
                 {
                     if (!specialitatiServiciu.Contains(sp.ID))
                     {

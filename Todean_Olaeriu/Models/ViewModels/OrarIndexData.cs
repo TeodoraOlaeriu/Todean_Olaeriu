@@ -1,6 +1,4 @@
-﻿using System.Security.Policy;
-using Todean_Olaeriu.Models;
-namespace Todean_Olaeriu.Models.ViewModels
+﻿namespace Todean_Olaeriu.Models.ViewModels
 {
     public class OrarIndexData
     {

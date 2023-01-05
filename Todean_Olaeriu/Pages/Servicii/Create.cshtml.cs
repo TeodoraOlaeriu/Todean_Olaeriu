@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Security.Policy;
-using System.Threading.Tasks;
+﻿using System.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Todean_Olaeriu.Data;
 using Todean_Olaeriu.Models;
 
 namespace Todean_Olaeriu.Pages.Servicii
@@ -46,7 +38,7 @@ namespace Todean_Olaeriu.Pages.Servicii
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync(string[] specialitatiSelectate)
         {
-            var serviciuNou = new Serviciu();
+            var serviciuNou = Serviciu;
             if (specialitatiSelectate != null)
             {
                 serviciuNou.SpecialitatiServiciu = new List<SpecialitateServiciu>();
@@ -59,8 +51,8 @@ namespace Todean_Olaeriu.Pages.Servicii
                     serviciuNou.SpecialitatiServiciu.Add(spToAdd);
                 }
             }
-            Serviciu.SpecialitatiServiciu = serviciuNou.SpecialitatiServiciu;
-            _context.Serviciu.Add(Serviciu);
+            //Serviciu.SpecialitatiServiciu = serviciuNou.SpecialitatiServiciu;
+            _context.Serviciu.Add(serviciuNou);
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
             PopulareDateSpecialitateAtribuite(_context, serviciuNou);

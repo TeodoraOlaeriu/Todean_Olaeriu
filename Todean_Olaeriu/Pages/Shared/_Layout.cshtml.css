@@ -5,6 +5,7 @@ a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+
 }
 
 a {
@@ -12,9 +13,9 @@ a {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: rgb(136,8,8);
+    background-color: rgb(136,8,8);
+    border-color: rgb(136,8,8);
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
